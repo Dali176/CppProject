@@ -38,7 +38,7 @@ void player::setDPS()
 }
 void player::setExp(double exp)
 {
-	exp = 0;
+	exp = 0.0;
 	Exp = exp;
 }
 void player::setExpReq()
