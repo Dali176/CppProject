@@ -46,19 +46,19 @@ int main()
 		{
 			Sleep(100);
 			int opt1;
-			std::cout << "\n Type 1 to move forward, 2 to move right, 3 to move backwards and 4 to move left\n";
+			std::cout << "\n Type 1 to move forward, 2 to move right, 3 to move left\n";
 			std::cin >> opt1;
-			if (opt1 >= 1 && opt1 <= 4)
+			if (opt1 >= 1 && opt1 <= 3)
 			{
 				Sleep(50 * (opt1));
 				srand(time(NULL));
-				if (rand() % 4 == opt1 - 1)
+				if (opt1 >= 1 && opt1 <= 3)
 				{
 					account = battle(account);
 				}
 				else
 				{
-					std::cout << "\n Error please enter a number between 1 and 4 \n";
+					std::cout << "\n Error please enter a number between 1 and 3 \n";
 				}
 			}
 		}
@@ -73,32 +73,34 @@ player battle(player account)
 	Sleep(20);
 	srand(time(NULL));
 	int randM = (rand() % 3);
-	int randT = (rand() % 5) + 1;
-	int randN = rand() % 6 + 1;
+	int randT = (rand() % 4);
+	int randN = rand() % 6;
 	int killCount = 0;
-	Monster mons(name[randN], account.getLevel()-1, race[randM][randT], randT);
+	Monster mons(name[randN], account.getLevel(), race[randM][randT], randT);
 	//std::string name, int lvl, std::string race, int tough)
+	//Monster::Monster(std::string name, int lvl, std::string race, int tough)
 	std::cout << "\nOut of the blue " + mons.getName() + " the " + mons.getRace() + " shows up to fight you, prepare to fight!\n";
+	std::cout << mons.getHealth() << " " << mons.getToughness() << " " << mons.getMaxHealth();
 	Sleep(200);
 	do
 	{
-		std::cout << "\n\n ################## *Insert Intense Music Here* ##################";
-		std::cout << "\n It is your turn to attack (hope you read the tutorial)";
+		std::cout << "\n\n################## *Insert Intense Music Here* ##################";
+		std::cout << "\nIt is your turn to attack (hope you read the tutorial)\n";
 		std::cin >> opt;
-		if (opt == "Att")
+		if (opt == "att")
 		{
 			int att = rand() % (account.getDPS());
 			int mobAtt = rand() % (mons.getDPS());
 			mons.setHealth(mons.getHealth() - att);
 			account.setHealth(account.getHealth() - mobAtt);
-			std::cout << "\n You hit the monster for " + att;
-			std::cout << "\n The monster now has " << mons.getHealth() << " hp left";
+			std::cout << "\nYou hit the monster for " << att;
+			std::cout << "\nThe monster now has " << mons.getHealth() << " hp left";
 			Sleep(500);
-			std::cout << "\n Yougot hit for " + mobAtt;
-			std::cout << "\n You now have " << account.getHealth() << " hp left";
+			std::cout << "\nYou got hit for " << mobAtt;
+			std::cout << "\nYou now have " << account.getHealth() << " hp left";
 			Sleep(500);
 		}
-	} while (mons.getHealth() > 0 || account.getHealth() > 0);
+	} while (mons.getHealth() > 0 && account.getHealth() > 0);
 	if (mons.getHealth() <= 0)
 	{
 		std::cout << "\n Wow look at you, you won a battle, aren't you a tough cookie anyways congrats";

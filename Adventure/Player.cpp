@@ -21,8 +21,7 @@ void player::setRace(std::string race)
 }
 void player::setLevel(int lvl)
 {
-	lvl = 1;
-	pLvl = lvl;
+	pLvl = lvl + 1;
 }
 void player::setHealth(double h) 
 {

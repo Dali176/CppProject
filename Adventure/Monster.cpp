@@ -16,7 +16,7 @@ void Monster::setName(std::string name)
 }
 void Monster::setLevel(int lvl)
 {
-	mLvl = lvl;
+	mLvl = lvl + 1;
 }
 void Monster::setRace(std::string race)
 {
@@ -30,13 +30,13 @@ void Monster::setDPS()
 {
 	mDPS = (2 * (getLevel()) + ((getToughness()*getLevel()) / 2));
 }
-void Monster::setHealth(double health)
+void Monster::setHealth(int health)
 {
-	mMH = health;
+	mH = health;
 }
 void Monster::setMaxHealth()
 {
-	mMH = (4 * (getToughness() + getLevel()));
+	mMH = (5 * (getToughness() + getLevel()));
 }
 void Monster::setExp()
 {
@@ -62,11 +62,11 @@ int Monster::getDPS()
 {
 	return mDPS;
 }
-double Monster::getHealth()
+int Monster::getHealth()
 {
 	return mH;
 }
-double Monster::getMaxHealth()
+int Monster::getMaxHealth()
 {
 	return mMH;
 }
