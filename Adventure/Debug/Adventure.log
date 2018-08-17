@@ -1,5 +1,5 @@
 ﻿  Source.cpp
-c:\users\dalim\source\repos\adventure\adventure\source.cpp(36): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\dalim\source\repos\adventure\adventure\source.cpp(55): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\dalim\source\repos\adventure\adventure\source.cpp(96): warning C4715: 'battle': not all control paths return a value
+c:\users\dalim\source\repos\adventure\adventure\source.cpp(42): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\dalim\source\repos\adventure\adventure\source.cpp(70): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\dalim\source\repos\adventure\adventure\source.cpp(111): warning C4715: 'battle': not all control paths return a value
   Adventure.vcxproj -> C:\Users\Dalim\source\repos\Adventure\Debug\Adventure.exe

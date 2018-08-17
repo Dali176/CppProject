@@ -52,7 +52,7 @@ int main()
 		}
 		else if (opt1 == "look")
 		{
-			std::cout << "You look around and see that you are currently standing in a: " << location[opt1][loc];
+			std::cout << "You look around and see that you are currently standing in a: ";
 		}
 		else
 		{
@@ -81,11 +81,11 @@ player battle(player account)
 	do
 	{
 		std::cout << "\n\n################## *Insert Intense Music Here* ##################";
-		std::cout << "\nIt is your turn to attack";
+		std::cout << "\nIt is your turn to attack\n";
 		std::cin >> opt;
 		if (opt == "att")
 		{
-			int att = rand() % (account.getDPS());
+			int att = rand() % (account.getDPS()) + 3;
 			int mobAtt = rand() % (mons.getDPS());
 			mons.setHealth(mons.getHealth() - att);
 			account.setHealth(account.getHealth() - mobAtt);
