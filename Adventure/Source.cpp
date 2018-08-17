@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 #include <Windows.h>
 #include "Monster.h"
 #include "Player.h"
+#include "Item.h"
 
 player battle(player account);
 player calcExp(player account, Monster mons);
@@ -12,7 +14,7 @@ player levelUp(player account);
 int main()
 {
 	std::string name;
-	std::string opt2;
+	int opt2 = 0;
 	std::cout << "Welcome to your doom, please enter the name for your gravestone \n";
 	std::cin >> name;
 	std::string race[4] = { "Orc", "Human", "Elf", "Dwarf" };
@@ -22,48 +24,42 @@ int main()
 	raceOpt = raceOpt - 1;
 	player account(name, race[raceOpt], 1, 0);
 	std::cout << "\nWelcome to your funeral: " << account.getName() << " you are an " << account.getRace();
-	std::cout << "\nDo you wish to see the general commands? y\n";
-	std::cin >> opt2;
+	std::cout << "\natt is used to attack\nx to equip an item\nlook to look around self";
 
-	if (opt2 == "y")
+	std::string location[3][3] = { {"Cave", "Mountain", "Village"}, {"Field", "Forest", "Graveyard"}, {"City of People", "The Far Land", "Kitchen"} };
+	std::vector<Item> Inv = {};
+
+	while (1)
 	{
-		std::string back;
-		std::cout << "1-4 are general commands for action \nAtt is for attack \nLook is to look around \nX object is to examine an item";
-		std::cout << "\nType back to go back\n";
-		std::cin >> back;
-		if (back == "back")
+		Sleep(100);
+		std::string opt1;
+		int loc = rand() % 3;
+		std::cout << "\nType 1 to move forward, 2 to move right, 3 to move left\n";
+		std::cin >> opt1;
+		if (opt1 == "1" || opt1 == "2" || opt1 == "3")
 		{
-			opt2 = "n";
+			Sleep(50);
+			srand(time(NULL));
+			int fight = rand() % 100;
+			if (fight >= 49)
+			{
+				account = battle(account);
+			}
+			else
+			{
+				return 1;
+			}
+		}
+		else if (opt1 == "look")
+		{
+			std::cout << "You look around and see that you are currently standing in a: " << location[opt1][loc];
 		}
 		else
 		{
-			"\nType back";
+
 		}
 	}
-	else
-	{
-		while (1)
-		{
-			Sleep(100);
-			int opt1;
-			std::cout << "\n Type 1 to move forward, 2 to move right, 3 to move left\n";
-			std::cin >> opt1;
-			if (opt1 >= 1 && opt1 <= 3)
-			{
-				Sleep(50 * (opt1));
-				srand(time(NULL));
-				if (opt1 >= 1 && opt1 <= 3)
-				{
-					account = battle(account);
-				}
-				else
-				{
-					std::cout << "\n Error please enter a number between 1 and 3 \n";
-				}
-			}
-		}
-		return 0;
-	}
+	return 0;
 }
 player battle(player account)
 {
@@ -80,12 +76,12 @@ player battle(player account)
 	//std::string name, int lvl, std::string race, int tough)
 	//Monster::Monster(std::string name, int lvl, std::string race, int tough)
 	std::cout << "\nOut of the blue " + mons.getName() + " the " + mons.getRace() + " shows up to fight you, prepare to fight!\n";
-	std::cout << mons.getHealth() << " " << mons.getToughness() << " " << mons.getMaxHealth();
+	//std::cout << mons.getHealth() << " " << mons.getToughness() << " " << mons.getMaxHealth() << "Testing don't forget to remove - Dali with <3";
 	Sleep(200);
 	do
 	{
 		std::cout << "\n\n################## *Insert Intense Music Here* ##################";
-		std::cout << "\nIt is your turn to attack (hope you read the tutorial)\n";
+		std::cout << "\nIt is your turn to attack";
 		std::cin >> opt;
 		if (opt == "att")
 		{
