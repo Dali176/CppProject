@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 class Item
 {
 public:
@@ -7,10 +8,12 @@ public:
 	void setName();
 	void setType();
 	void setDps();
+	void setInventory();
 
 	std::string getName();
 	std::string getType();
 	int getDps();
+	std::vector<Item> Inventory{};
 private:
 	int iDps;
 	std::string iName;

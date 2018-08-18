@@ -10,6 +10,7 @@
 player battle(player account);
 player calcExp(player account, Monster mons);
 player levelUp(player account);
+//std::vector<Item> Inv = {};
 
 int main()
 {
@@ -27,15 +28,16 @@ int main()
 	std::cout << "\natt is used to attack\nx to equip an item\nlook to look around self";
 
 	std::string location[3][3] = { {"Cave", "Mountain", "Village"}, {"Field", "Forest", "Graveyard"}, {"City of People", "The Far Land", "Kitchen"} };
-	std::vector<Item> Inv = {};
 
 	while (1)
 	{
 		Sleep(100);
 		std::string opt1;
 		int loc = rand() % 3;
+		int loc2 = rand() % 3;
 		std::cout << "\nType 1 to move forward, 2 to move right, 3 to move left\n";
 		std::cin >> opt1;
+		std::string look = location[loc][loc2];
 		if (opt1 == "1" || opt1 == "2" || opt1 == "3")
 		{
 			Sleep(50);
@@ -47,12 +49,13 @@ int main()
 			}
 			else
 			{
+				std::cout << "\nYou look around and see that you are currently standing in a: " << look << std::endl;
 				return 1;
 			}
 		}
 		else if (opt1 == "look")
 		{
-			std::cout << "You look around and see that you are currently standing in a: ";
+			std::cout << "\nYou look around and see that you are currently standing in a: " << look << std::endl;
 		}
 		else
 		{
@@ -64,6 +67,7 @@ int main()
 player battle(player account)
 {
 	std::string opt;
+	// Monster names + type
 	std::string name[6] = { "Steve", "Carol", "Mark", "Max", "Bob", "Dylan" };
 	std::string race[4][3] = { {"Rat", "Goblin", "Cow"},{"Snake", "Scorpion", "Troll"}, {"Orc", "Giant", "Dark Elf"}, {"Dragon", "Mad King", "Mom"} };
 	Sleep(20);
@@ -73,8 +77,6 @@ player battle(player account)
 	int randN = rand() % 6;
 	int killCount = 0;
 	Monster mons(name[randN], account.getLevel(), race[randM][randT], randT);
-	//std::string name, int lvl, std::string race, int tough)
-	//Monster::Monster(std::string name, int lvl, std::string race, int tough)
 	std::cout << "\nOut of the blue " + mons.getName() + " the " + mons.getRace() + " shows up to fight you, prepare to fight!\n";
 	//std::cout << mons.getHealth() << " " << mons.getToughness() << " " << mons.getMaxHealth() << "Testing don't forget to remove - Dali with <3";
 	Sleep(200);
@@ -111,9 +113,9 @@ player battle(player account)
 }
 player calcExp(player acc, Monster mons)
 {
-	std::cout << "###\n Calculating Exp\n###";
+	std::cout << "###\n Calculating Exp\n###" << std::endl;
 	Sleep(500);
-	acc.setExp(acc.getExp() + mons.getExp());
+	acc.setExp(acc.getExp() + mons.getExp() + 5);
 	std::cout << "EXP: " << acc.getExp() << "/" << acc.getExpReq();
 	if (acc.getExp() >= acc.getExpReq())
 	{
@@ -127,6 +129,6 @@ player levelUp(player acc)
 	acc.setExpReq();
 	acc.setMaxHealth();
 	acc.setHealth(acc.getMaxHealth());
-	std::cout << "\n Wow, you managed to level up, look at you mr tough guy, you're now level: " << acc.getLevel();
+	std::cout << "\n Wow, you managed to level up, look at you mr tough guy, you're now level: " << acc.getLevel() << std::endl;
 	return acc;
 }

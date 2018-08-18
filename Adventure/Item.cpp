@@ -5,6 +5,7 @@ Item::Item(std::string name, std::string type, int dps)
 	setName();
 	setType();
 	setDps();
+	setInventory();
 }
 
 void Item::setName()
@@ -23,6 +24,11 @@ void Item::setDps()
 {
 	int d = rand() % 8;
 	iDps = d;
+}
+void Item::setInventory()
+{
+	Item newItem({ iName, iType, iDps });
+	Inventory.push_back(newItem);
 }
 
 std::string Item::getName()

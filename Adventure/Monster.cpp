@@ -40,7 +40,7 @@ void Monster::setMaxHealth()
 }
 void Monster::setExp()
 {
-	Exp = (getLevel() * 5);
+	Exp = (getLevel() * 35);
 }
 std::string Monster::getName()
 {
